@@ -25,8 +25,61 @@
       <div id="message_box">Welcome to battleship.js!<br></div>
       <hr>
       <div class="controls">
-		<button id="restart_btn" enabled>Restart game</button>
+		<button id="restart_btn" disabled>Restart game</button>
       </div>
+      <div class="alan-btn">
+        <script type="text/javascript"
+        src="https://studio.alan.app/web/lib/alan_lib.min.js"></script>
+        <script>
+          var alanBtnInstance = alanBtn({
+            key: "75bde666841388eb70107cfb0db8405a2e956eca572e1d8b807a3e2338fdd0dc/stage",
+            onCommand: function (commandData) {
+              if (commandData.command === "go:back") {
+                //call client code that will react on the received command
+              }
+              var letter = commandData.lett.toLowerCase()
+              var number = commandData.num
+              var ltn = -1
+              switch(letter){
+                case a:
+                  ltn = 0
+                  break;
+                case b:
+                  ltn = 1
+                  break;
+                case c:
+                  ltn = 2
+                  break;
+                case d:
+                  ltn = 3
+                  break;
+                case e:
+                  ltn = 4
+                  break;
+                case f:
+                  ltn = 5
+                  break;
+                case g:
+                  ltn = 6
+                  break;
+                case h:
+                  ltn = 7
+                  break;
+                case i:
+                  ltn = 8
+                  break;
+                case j:
+                  ltn = 9
+                  break;
+
+              }
+              shootCell('player',ltn,number-1)
+            },
+            rootEl: document.getElementById("alan-btn"),
+          });
+        </script>
+      </div>
+
     </div>
   </body>
 </html>
