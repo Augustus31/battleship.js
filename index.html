@@ -38,42 +38,42 @@
                 //call client code that will react on the received command
               }
               var letter = commandData.letter.toLowerCase()
-              var number = commandData.num
+              var number = parseInt(commandData.num)
               var ltn = -1
               switch(letter){
-                case a:
+                case 'a':
                   ltn = 0
                   break;
-                case b:
+                case 'b':
                   ltn = 1
                   break;
-                case c:
+                case 'c':
                   ltn = 2
                   break;
-                case d:
+                case 'd':
                   ltn = 3
                   break;
-                case e:
+                case 'e':
                   ltn = 4
                   break;
-                case f:
+                case 'f':
                   ltn = 5
                   break;
-                case g:
+                case 'g':
                   ltn = 6
                   break;
-                case h:
+                case 'h':
                   ltn = 7
                   break;
-                case i:
+                case 'i':
                   ltn = 8
                   break;
-                case j:
+                case 'j':
                   ltn = 9
                   break;
 
               }
-              shootCell('player',ltn,number-1)
+              rollar(ltn,number-1)
             },
             rootEl: document.getElementById("alan-btn"),
           });

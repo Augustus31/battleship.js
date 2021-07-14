@@ -7,18 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	var opponentGrid = document.getElementById('opponent_grid');
 	var restartBtn = document.getElementById('restart_btn');
 	var messageBoxElement = document.getElementById('message_box');
-	
+
 	window.onerror = function(error) {
 		MessageBox.addMsg('<strong>Error:</strong> ' + error, true);
 	}
-	
+
 	Graphics.unBlockRestartBtn(restartBtn, true);
-	
+
 
 	var messageBox = new MessageBox(messageBoxElement);
 	Graphics.loadGrids(playerGrid, opponentGrid, Game.gridSize);
 
-	
+
 	if (Game.turn === 'opponent') {
 		MessageBox.addMsg('The opponent starts.');
 		Opponent.shootCell();
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	} else {
 		MessageBox.addMsg('You start!');
 	}
-	
+
 	for (var i = 0; i < gridBtns.length; i++) {
 		gridBtns[i].addEventListener('click', function() {
 			if (Game.hasStarted) {
@@ -57,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	}
-	
+
+
 	restartBtn.addEventListener('click', function() {
 		if (!Game.hasStarted) {
 			Game.restartGame(playerGrid, opponentGrid);
@@ -66,3 +67,42 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 });
+
+function rollar(w, h){
+	var gridBtns = document.getElementsByClassName('grid_btn');
+	var playerGrid = document.getElementById('player_grid');
+	var opponentGrid = document.getElementById('opponent_grid');
+	var restartBtn = document.getElementById('restart_btn');
+	var messageBoxElement = document.getElementById('message_box');
+	for (var i = 0; i < gridBtns.length; i++) {
+		if (Game.hasStarted) {
+			if (gridBtns[i].getAttribute('data-type') == 'opponent') {
+				if (Game.turn === 'player') {
+					if(parseInt(gridBtns[i].getAttribute('data-h')) == h){
+						if(parseInt(gridBtns[i].getAttribute('data-w')) == w){
+							Player.shootCell(gridBtns[i].getAttribute('data-w'), gridBtns[i].getAttribute('data-h'));
+							Graphics.updateGrid('opponent', opponentGrid);
+							if (Opponent.numBoatsAlive === 0) {
+								Game.endGame('player');
+							} else {
+								Game.switchTurn();
+								Opponent.shootCell();
+								Graphics.updateGrid('player', playerGrid);
+								if (Player.numBoatsAlive === 0) {
+									Game.endGame('opponent');
+								}
+								Game.switchTurn();
+							}
+						}
+					}
+				} else {
+					//throw 'It is not your turn';
+				}
+			} else {
+				//throw 'data-type attribute must be equal to opponent';
+			}
+		} else {
+			//throw 'Game has already ended';
+		}
+	}
+}

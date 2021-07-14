@@ -7,15 +7,15 @@ class Game {
 		Game.numBoatsPerType = [0, 2, 2, 1, 1, 1];
 		Game.numBoats = Game.getNumBoats();
 	}
-	
+
 	static getNumBoats() {
 		return Game.numBoatsPerType.reduce((a, b) => a+b);
 	}
-	
+
 	static cellCodeToString(w, h) {
 		return String.fromCharCode(parseInt(w)+65) + (parseInt(h)+1);
 	}
-	
+
 	static stateCodeToString(code) {
 		switch(code) {
 			case 0:
@@ -32,25 +32,27 @@ class Game {
 				throw 'Cell code must be 0, 1, 2, 3 or 4';
 		}
 	}
-	
+
 	static randomCell() {
 		return [parseInt(Math.floor(Math.random() * Game.gridSize)), parseInt(Math.floor(Math.random() * Game.gridSize))];
 	}
-	
+
 	static whoStarts() {
 		return Math.random() < 0.5 ? 'player' : 'opponent';
 	}
-	
+
 	static switchTurn() {
 		Game.turn = Game.turn === 'player' ? 'opponent' : 'player';
 	}
-	
+
 	static shootCell(shooter, w, h) {
 		var cellValue = shooter === 'player' ? Opponent.grid[w][h] : Player.grid[w][h];
 		if (cellValue < 2) {
 			cellValue += 2;
 		}
 		if (shooter === 'player') {
+			// console.log(w)
+			// console.log(h)
 			Opponent.grid[w][h] = cellValue;
 		} else {
 			Player.grid[w][h] = cellValue;
@@ -67,7 +69,7 @@ class Game {
 			}
 		}
 	}
-	
+
 	static setGridRandomly(gridType) {
 		if (gridType !== 'player' && gridType !== 'opponent') {
 			throw 'Grid must be player or opponent.';
@@ -80,7 +82,7 @@ class Game {
 			var boats = Opponent.boats;
 		}
 		var stage = Game.numBoatTypes, numCellsBoat = 0, numBoatsType, i = 0, j = 0, randomCell, direction, boatID = 0;
-		
+
 		while (stage !== 0) {
 			numBoatsType = 0;
 			while (numBoatsType < Game.numBoatsPerType[stage]) {
@@ -117,14 +119,14 @@ class Game {
 			Opponent.boats = boats.slice();
 		}
 	}
-	
+
 	static endGame(winner) {
 		MessageBox.addMsg('<b>' + winner.charAt(0).toUpperCase() + winner.slice(1) + ' won!</b>', true);
 		Game.hasStarted = false;
 		Graphics.unBlockCells(true);
 		Graphics.unBlockRestartBtn(document.getElementById('restart_btn'), false);
 	}
-	
+
 	static restartGame(playerGrid, opponentGrid) {
 		Graphics.checkElement(playerGrid);
 		Graphics.checkElement(opponentGrid);
@@ -136,7 +138,7 @@ class Game {
 		MessageBox.clear();
 		Game.hasStarted = true;
 	}
-	
+
 	static initGame() {
 		var player = new Player;
 		var opponent = new Opponent;
@@ -144,4 +146,18 @@ class Game {
 		Player.placeBoats();
 		Opponent.placeBoats();
 	}
+
+	static findPos(obj){
+   var curleft = 0;
+   var curtop = 0;
+
+   if (obj.offsetParent) {
+      do {
+         curleft += obj.offsetLeft;
+         curtop += obj.offsetTop;
+      } while (obj = obj.offsetParent);
+
+      return {X:curleft,Y:curtop};
+   }
+ }
 }
