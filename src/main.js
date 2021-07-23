@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		MessageBox.addMsg('<strong>Error:</strong> ' + error, true);
 	}
 
-	Graphics.unBlockRestartBtn(restartBtn, true);
+	Graphics.unBlockRestartBtn(restartBtn, false);
 
 
 	var messageBox = new MessageBox(messageBoxElement);
@@ -37,12 +37,20 @@ document.addEventListener('DOMContentLoaded', function() {
 						Graphics.updateGrid('opponent', opponentGrid);
 						if (Opponent.numBoatsAlive === 0) {
 							Game.endGame('player');
+							var win = new Audio('win.wav');
+							setTimeout(() => {
+								win.play();
+							}, 1000);
 						} else {
 							Game.switchTurn();
 							Opponent.shootCell();
 							Graphics.updateGrid('player', playerGrid);
 							if (Player.numBoatsAlive === 0) {
 								Game.endGame('opponent');
+								var lose = new Audio('lose.wav');
+								setTimeout(() => {
+									lose.play();
+								}, 1000);
 							}
 							Game.switchTurn();
 						}
@@ -59,15 +67,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
+// 	restartBtn.addEventListener('click', function() {
+// 		if (!Game.hasStarted) {
+// 			Game.restartGame(playerGrid, opponentGrid);
+// 		} else {
+// 			throw 'Game has not ended';
+// 		}
+// 	});
+// });
+
 	restartBtn.addEventListener('click', function() {
-		if (!Game.hasStarted) {
 			Game.restartGame(playerGrid, opponentGrid);
-		} else {
-			throw 'Game has not ended';
-		}
 	});
 });
-
 function rollar(w, h){
 	var gridBtns = document.getElementsByClassName('grid_btn');
 	var playerGrid = document.getElementById('player_grid');
@@ -84,12 +96,20 @@ function rollar(w, h){
 							Graphics.updateGrid('opponent', opponentGrid);
 							if (Opponent.numBoatsAlive === 0) {
 								Game.endGame('player');
+								var win = new Audio('win.wav');
+								setTimeout(() => {
+									win.play();
+								}, 500);
 							} else {
 								Game.switchTurn();
 								Opponent.shootCell();
 								Graphics.updateGrid('player', playerGrid);
 								if (Player.numBoatsAlive === 0) {
 									Game.endGame('opponent');
+									var lose = new Audio('lose.wav');
+									setTimeout(() => {
+										lose.play();
+									}, 500);
 								}
 								Game.switchTurn();
 							}
