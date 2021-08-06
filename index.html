@@ -44,46 +44,54 @@
               var hv5 = commandData.HV5;
               const input = [hv1, hv2, hv3, hv4, hv5];
               for(let i = 0; i < input.length; i++){
-                if(input[i].length != 0){
-                  var letter = input[i].substring(0,1).toLowerCase();
-                  var number = parseInt(input[i].substring(1,2));
-                  var ltn = -1;
-                  switch(letter){
-                    case 'a':
-                      ltn = 0;
-                      break;
-                    case 'b':
-                      ltn = 1;
-                      break;
-                    case 'c':
-                      ltn = 2;
-                      break;
-                    case 'd':
-                      ltn = 3;
-                      break;
-                    case 'e':
-                      ltn = 4;
-                      break;
-                    case 'f':
-                      ltn = 5;
-                      break;
-                    case 'g':
-                      ltn = 6;
-                      break;
-                    case 'h':
-                      ltn = 7;
-                      break;
-                    case 'i':
-                      ltn = 8;
-                      break;
-                    case 'j':
-                      ltn = 9;
-                      break;
+                setTimeout(() => {
+                  if(input[i].length != 0){
+                    var letter = input[i].substring(0,1).toLowerCase();
+                    var number = parseInt(input[i].substring(1,2));
+                    var ltn = -1;
+                    switch(letter){
+                      case 'a':
+                        ltn = 0;
+                        break;
+                      case 'b':
+                        ltn = 1;
+                        break;
+                      case 'c':
+                        ltn = 2;
+                        break;
+                      case 'd':
+                        ltn = 3;
+                        break;
+                      case 'e':
+                        ltn = 4;
+                        break;
+                      case 'f':
+                        ltn = 5;
+                        break;
+                      case 'g':
+                        ltn = 6;
+                        break;
+                      case 'h':
+                        ltn = 7;
+                        break;
+                      case 'i':
+                        ltn = 8;
+                        break;
+                      case 'j':
+                        ltn = 9;
+                        break;
+                    }
+                    console.log(letter);
+                    console.log(number-1);
+                    if(hv2.length == 0 && hv3.length == 0 && hv4.length == 0 && hv5.length == 0){
+                      rollar(ltn, number-1);
+                    }
+                    else{
+                      rollar2(ltn, number-1)
+                    }
                   }
-                  console.log(letter);
-                  console.log(number-1);
-                  rollar(ltn, number-1);
-                }
+          			}, 1000*i);
+
 
 
               }

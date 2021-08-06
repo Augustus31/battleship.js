@@ -6,7 +6,7 @@ class Player {
 		Player.boats = [];
 		Player.initializeBoats();
 	}
-	
+
 	static initializeGrid(gridSize) {
 		for (var i = 0; i < gridSize; i++) {
 			Player.grid[i] = [];
@@ -15,7 +15,7 @@ class Player {
 			}
 		}
 	}
-	
+
 	static initializeBoats() {
 		for (var i = 0; i < Game.numBoatTypes; i++) {
 			Player.boats[i] = [];
@@ -30,15 +30,19 @@ class Player {
 			}
 		}
 	}
-	
+
 	static placeBoats() {
 		// console.time('Player grid generated');
 		Game.setGridRandomly('player');
 		// console.timeEnd('Player grid generated')
 	}
-	
+
 	static shootCell(w, h) {
 		Game.shootCell('player', w, h);
+		MessageBox.addMsg('<span class="box_text" id="text_' + Opponent.grid[w][h] + '">' + Game.stateCodeToString(Opponent.grid[w][h]) + '!</span> Player shot cell <b>' + Game.cellCodeToString(w, h) + '</b>');
+	}
+	static shootCell2(w, h) {
+		Game.shootCell2('player', w, h);
 		MessageBox.addMsg('<span class="box_text" id="text_' + Opponent.grid[w][h] + '">' + Game.stateCodeToString(Opponent.grid[w][h]) + '!</span> Player shot cell <b>' + Game.cellCodeToString(w, h) + '</b>');
 	}
 }
