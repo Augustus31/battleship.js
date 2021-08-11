@@ -47,4 +47,9 @@ class Opponent {
 		Game.shootCell2('opponent', c[0], c[1]);
 		MessageBox.addMsg('<span class="box_text" id="text_' + Player.grid[c[0]][c[1]] + '">' + Game.stateCodeToString(Player.grid[c[0]][c[1]]) + '!</span> Opponent shot cell <b>' + Game.cellCodeToString(c[0], c[1]) + '</b>');
 	}
+	static shootCell3() {
+		var c = OpponentAI.giveCell();
+		Game.shootCell3('opponent', c[0], c[1]);
+		MessageBox.addMsg('<span class="box_text" id="text_' + Player.grid[c[0]][c[1]] + '">' + Game.stateCodeToString(Player.grid[c[0]][c[1]]) + '!</span> Opponent shot cell <b>' + Game.cellCodeToString(c[0], c[1]) + '</b>');
+	}
 }

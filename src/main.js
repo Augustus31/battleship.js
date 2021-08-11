@@ -173,3 +173,51 @@ function rollar2(w, h){
 		}
 	}
 }
+
+
+function rollar3(w, h){
+	var gridBtns = document.getElementsByClassName('grid_btn');
+	var playerGrid = document.getElementById('player_grid');
+	var opponentGrid = document.getElementById('opponent_grid');
+	var restartBtn = document.getElementById('restart_btn');
+	var messageBoxElement = document.getElementById('message_box');
+	for (var i = 0; i < gridBtns.length; i++) {
+		if (Game.hasStarted) {
+			if (gridBtns[i].getAttribute('data-type') == 'opponent') {
+				if (Game.turn === 'player') {
+					if(parseInt(gridBtns[i].getAttribute('data-h')) == h){
+						if(parseInt(gridBtns[i].getAttribute('data-w')) == w){
+							Player.shootCell3(gridBtns[i].getAttribute('data-w'), gridBtns[i].getAttribute('data-h'));
+							Graphics.updateGrid('opponent', opponentGrid);
+							if (Opponent.numBoatsAlive === 0) {
+								Game.endGame('player');
+								var win = new Audio('win.wav');
+								setTimeout(() => {
+									win.play();
+								}, 500);
+							} else {
+								Game.switchTurn();
+								Opponent.shootCell3();
+								Graphics.updateGrid('player', playerGrid);
+								if (Player.numBoatsAlive === 0) {
+									Game.endGame('opponent');
+									var lose = new Audio('lose.wav');
+									setTimeout(() => {
+										lose.play();
+									}, 500);
+								}
+								Game.switchTurn();
+							}
+						}
+					}
+				} else {
+					//throw 'It is not your turn';
+				}
+			} else {
+				//throw 'data-type attribute must be equal to opponent';
+			}
+		} else {
+			//throw 'Game has already ended';
+		}
+	}
+}

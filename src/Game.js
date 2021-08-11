@@ -359,6 +359,165 @@ class Game {
 		}
 	}
 
+	static shootCell3(shooter, w, h) {
+		var explosion = new Audio('explosion.mp3');
+		var splash = new Audio('splash.wav')
+		var sinking = new Audio('sinking.mp3')
+		var timer = 500;
+		explosion.volume = 0.1;
+		splash.volume = 0.1;
+		sinking.volume = 0.2;
+		var cellValue = shooter === 'player' ? Opponent.grid[w][h] : Player.grid[w][h];
+		if (cellValue < 2) {
+			cellValue += 2;
+		}
+		if (shooter === 'player') {
+			// console.log(w)
+			// console.log(h)
+			Opponent.grid[w][h] = cellValue;
+		} else {
+			Player.grid[w][h] = cellValue;
+
+		}
+		if (cellValue === 3) {
+			var boatShot = new Boat(shooter === 'player' ? 'opponent' : 'player', 0, 'H', w, h, true);
+			if (boatShot.isSunken()) {
+				boatShot.sink();
+				cellValue = 4
+				if (shooter === 'player') {
+					Opponent.numBoatsAlive--;
+				} else {
+					Player.numBoatsAlive--;
+				}
+			}
+		}
+		if (shooter === 'player') {
+			var ntl = '';
+			switch(parseInt(w)){
+				case 0:
+					ntl = 'a'
+					break;
+				case 1:
+					ntl = 'b'
+					break;
+				case 2:
+					ntl = 'c'
+					break;
+				case 3:
+					ntl = 'd'
+					break;
+				case 4:
+					ntl = 'e'
+					break;
+				case 5:
+					ntl = 'f'
+					break;
+				case 6:
+					ntl = 'g'
+					break;
+				case 7:
+					ntl = 'h'
+					break;
+				case 8:
+					ntl = 'i'
+					break;
+				case 9:
+					ntl = 'j'
+					break;
+
+			}
+			// // console.log(w);
+			// // console.log(ntl);
+			// // console.log(h);
+			// var isHit = 'Missed';
+			// var isSunk = '';
+			// if(cellValue >= 3){
+			// 	isHit = 'Hit';
+			// }
+			// if(cellValue == 4){
+			// 	isSunk = ' and sunk a ship.'
+			// }
+			// var str = 'You hit on ' + ntl + (parseInt(h)+1) + isSunk;
+			// timer = 500;
+			// // if(isHit == 'Missed'){
+			// // 	splash.play();
+			// // }
+			// // else{
+			// 	if(isSunk == ' and sunk a ship.'){
+			// 		Game.extraTime = true;
+			// 		timer = 1500;
+			// 		// sinking.play()
+			//
+			// 	}
+			// 	else{
+			// 		// explosion.play();
+			// 	}
+			// }
+			// // if(isHit == 'Hit'){
+			// // 	setTimeout(() => {
+			// // 		alanBtnInstance.playText(str);
+			// // 	}, timer);
+			// // }
+
+
+
+
+		}else{
+			var ntl = '';
+			switch(w){
+				case 0:
+					ntl = 'a'
+					break;
+				case 1:
+					ntl = 'b'
+					break;
+				case 2:
+					ntl = 'c'
+					break;
+				case 3:
+					ntl = 'd'
+					break;
+				case 4:
+					ntl = 'e'
+					break;
+				case 5:
+					ntl = 'f'
+					break;
+				case 6:
+					ntl = 'g'
+					break;
+				case 7:
+					ntl = 'h'
+					break;
+				case 8:
+					ntl = 'i'
+					break;
+				case 9:
+					ntl = 'j'
+					break;
+
+			}
+			// var isHit = 'missed';
+			// var isSunk = '';
+			// if(cellValue >= 3){
+			// 	isHit = 'hit';
+			// }
+			// if(cellValue == 4){
+			// 	isSunk = ', sinking a ship.'
+			// }
+			// var str = 'Opponent hit on ' + ntl + (h+1) + isSunk;
+			// if(Game.extraTime == true){
+			// 	timer = 1500;
+			// }
+			//
+			// // if(isHit == 'hit'){
+			// // 	setTimeout(() => {
+			// // 		alanBtnInstance.playText(str);
+			// // 	}, timer);
+			// // }
+		}
+	}
+
 	static setGridRandomly(gridType) {
 		if (gridType !== 'player' && gridType !== 'opponent') {
 			throw 'Grid must be player or opponent.';

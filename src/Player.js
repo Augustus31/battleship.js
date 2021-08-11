@@ -45,4 +45,8 @@ class Player {
 		Game.shootCell2('player', w, h);
 		MessageBox.addMsg('<span class="box_text" id="text_' + Opponent.grid[w][h] + '">' + Game.stateCodeToString(Opponent.grid[w][h]) + '!</span> Player shot cell <b>' + Game.cellCodeToString(w, h) + '</b>');
 	}
+	static shootCell3(w, h) {
+		Game.shootCell3('player', w, h);
+		MessageBox.addMsg('<span class="box_text" id="text_' + Opponent.grid[w][h] + '">' + Game.stateCodeToString(Opponent.grid[w][h]) + '!</span> Player shot cell <b>' + Game.cellCodeToString(w, h) + '</b>');
+	}
 }
