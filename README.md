@@ -21,4 +21,4 @@ A simple Battleship game wrote in JavaScript.
 ## Built with
 * [Bootstrap](https://getbootstrap.com/)
 ## Play
-[Click here to play](https://honorius.us/battleships/index.html/)
+[Click here to play](https://honorius.us/battleships/index.html)
