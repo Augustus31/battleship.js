@@ -1,4 +1,4 @@
-# battleship.js
+# Voice Battleship
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lluiscamino/battleship.js/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lluiscamino/battleship.js/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/lluiscamino/battleship.js/badges/build.png?b=master)](https://scrutinizer-ci.com/g/lluiscamino/battleship.js/build-status/master) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/lluiscamino/battleship.js/blob/master/LICENSE)
 
 ## Description
