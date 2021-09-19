@@ -4,7 +4,7 @@ class Game {
 		Game.turn = Game.whoStarts();
 		Game.gridSize = 10;
 		Game.numBoatTypes = 5;
-		Game.numBoatsPerType = [0, 2, 2, 1, 1, 1];
+		Game.numBoatsPerType = [0, 0, 1, 2, 1, 1];
 		Game.numBoats = Game.getNumBoats();
 		Game.extraTime = false;
 	}

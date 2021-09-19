@@ -13,7 +13,7 @@
     </style> -->
     <style>
       body {
-        background-image: url("wp2.png");
+        background-image: url("wp3.jpg");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: 100% 100%;
@@ -43,12 +43,12 @@
       <br>
       <div id="message_box">Welcome to battleship.js!<br></div>
       <hr>
-      <div class="controls">
-		<button id="restart_btn" disabled>Restart game</button>
+      <div class="log">
+        <img alt="bottom bar" src="bottombar6.png" width="1000px">
       </div>
       <br>
-      <div class="log">
-        <img alt="bottom bar" src="bottombar2.png" width="1000px">
+      <div class="controls">
+		<button id="restart_btn" disabled>Restart game</button>
       </div>
       <br>
       <div class="alan-btn">
@@ -72,7 +72,7 @@
                   setTimeout(() => {
                     if(input[i].length != 0){
                       var letter = input[i].substring(0,1).toLowerCase();
-                      var number = parseInt(input[i].substring(1,2));
+                      var number = parseInt(input[i].substring(1));
                       var ltn = -1;
                       switch(letter){
                         case 'a':
@@ -227,6 +227,12 @@
             } while (currentDate - date < milliseconds);
           }
         </script>
+        <!-- <script>
+          setTimeout(() => {
+            var buttoneus = document.getElementById("restart_btn");
+            buttoneus.click();
+          },5000);
+        </script> -->
       </div>
 
     </div>
